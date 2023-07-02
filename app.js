@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import morgan from 'morgan';
 import database from './config/db/database.js';
 import router from './app/routes/index.routes.js';
+import cors from 'cors';
 
 dotenv.config()
 
@@ -12,6 +13,7 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 // Rutas de la aplicación
 app.use('/api', router);
