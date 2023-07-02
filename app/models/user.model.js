@@ -5,19 +5,12 @@ import database from '../../config/db/database.js';
 
 const { connection } = database;
 
+
+// GET -------------------------------------------------------------
+
 // Obtener todos los usuarios
 const getAllUsers = (callback) => {
     connection.query('SELECT * FROM users', callback);
-}
-
-// Crear un nuevo usuario
-const createUser = (user, callback) => {
-    connection.query('INSERT INTO users SET ?', [user], callback);
-}
-
-// Eliminar un usuario
-const deleteUser = (id, callback) => {
-    connection.query('DELETE FROM users WHERE userID = ?', [id], callback);
 }
 
 // Obtener un usuario por su id
@@ -30,11 +23,33 @@ const getUserByUsername = (username, callback) => {
     connection.query('SELECT * FROM users WHERE username = ?', [username], callback);
 }
 
+// POST -------------------------------------------------------------
+
+// Crear un nuevo usuario
+const createUser = (user, callback) => {
+    connection.query('INSERT INTO users SET ?', [user], callback);
+}
+
+// DELETE -------------------------------------------------------------
+
+// Eliminar un usuario
+const deleteUser = (id, callback) => {
+    connection.query('DELETE FROM users WHERE userID = ?', [id], callback);
+}
+
+// PUT -------------------------------------------------------------
+
+// Actualizar un usuario
+const updateUser = (id, user, callback) => {
+    connection.query('UPDATE users SET ? WHERE userID = ?', [user, id], callback);
+}
+
 // Exportar los métodos del modelo (model)
 export default {
     getAllUsers,
     createUser,
     deleteUser,
     getUserById,
-    getUserByUsername
+    getUserByUsername,
+    updateUser
 }

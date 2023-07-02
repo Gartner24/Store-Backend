@@ -2,7 +2,7 @@ import express from 'express';
 import user from '../controllers/user.controller.js';
 
 // user.controller
-const { getAllUsers, createUser, deleteUser, getUserById, getUserByUsername } = user;
+const { getAllUsers, createUser, deleteUser, getUserById, getUserByUsername, updateUser } = user;
 
 const userRoutes = express.Router();
 
@@ -18,5 +18,8 @@ userRoutes.post('/', createUser);
 
 // Rutas DELETE (base path: /api/users)
 userRoutes.delete('/:id', deleteUser);
+
+// Rutas PUT (base path: /api/users)
+userRoutes.put('/:id', updateUser);
 
 export default userRoutes;
