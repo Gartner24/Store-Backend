@@ -17,12 +17,12 @@ const createUser = (user, callback) => {
 
 // Eliminar un usuario
 const deleteUser = (id, callback) => {
-    connection.query('DELETE FROM users WHERE id = ?', [id], callback);
+    connection.query('DELETE FROM users WHERE userID = ?', [id], callback);
 }
 
 // Obtener un usuario por su id
 const getUserById = (id, callback) => {
-    connection.query('SELECT * FROM users WHERE id = ?', [id], callback);
+    connection.query('SELECT * FROM users WHERE userID = ?', [id], callback);
 }
 
 // Obtener un usuario por su username
