@@ -11,6 +11,7 @@ const getAllUsers = (req, res, next) => {
 	});
 };
 
+// Crear un nuevo usuario
 const createUser = (req, res, next) => {
     // Obtener el cuerpo de la petición
     const body = req.body;
@@ -22,8 +23,47 @@ const createUser = (req, res, next) => {
     });
 }
 
+// Eliminar un usuario
+const deleteUser = (req, res, next) => {
+    // Obtener el id del usuario
+    const id = req.params.id;
+    // Consulta a la base de datos
+    user.deleteUser(id, (error, results) => {
+        if (error) throw error;
+        // Devolver el resultado de la consulta en formato JSON
+        res.status(200).json(results);
+    });
+}
+
+// Obtener un usuario por su id
+const getUserById = (req, res, next) => {
+    // Obtener el id del usuario
+    const id = req.params.id;
+    // Consulta a la base de datos
+    user.getUserById(id, (error, results) => {
+        if (error) throw error;
+        // Devolver el resultado de la consulta en formato JSON
+        res.status(200).json(results);
+    });
+}
+
+// Obtener un usuario por su username
+const getUserByUsername = (req, res, next) => {
+    // Obtener el username del usuario
+    const username = req.params.username;
+    // Consulta a la base de datos
+    user.getUserByUsername(username, (error, results) => {
+        if (error) throw error;
+        // Devolver el resultado de la consulta en formato JSON
+        res.status(200).json(results);
+    });
+}
+
 // Exportar los métodos del controlador
 export default {
 	getAllUsers,
     createUser,
+    deleteUser,
+    getUserById,
+    getUserByUsername
 };
